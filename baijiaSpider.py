@@ -1,5 +1,5 @@
-# coding:utf-8
-import json
+# -*- coding:utf-8 -*-
+
 import pymongo
 import time
 import random
@@ -12,8 +12,8 @@ from pymysql import connect
 from bs4 import BeautifulSoup as bs
 import redis
 import sys
+
 sys.setrecursionlimit(10000)
-#去除https的证书警告
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
