@@ -99,7 +99,7 @@ class baiduSpider(object):
 
             # 将一个用户的数据查看完，就把用户个人数据放回redis数据库
             user_data['end_time'] = self.end_time
-            self.redis_cli.lpush('baiJiaHaoUser_useful', user_data)
+            self.redis_cli.lpush('baiJiaUser', user_data)
             print('*' * 60, "放回redis数据库")
 
             self.offset = user_data['offset']
@@ -112,7 +112,6 @@ class baiduSpider(object):
             self.parse_itemlist(res=res, userName=userName, source_url=source_url, userId=userId)
 
     def get_res(self, source_url, userId, last_time, offset):
-
         headers = {
             # GET /list?type=article&context={%22offset%22:%22-1_6%22,%22app_id%22:%221554130297341500%22,%22last_time%22:%221531896119%22,%22pageSize%22:14}&_=1531896156107&callback=jsonp3 HTTP/1.1
             'Host': 'author.baidu.com',
@@ -131,7 +130,6 @@ class baiduSpider(object):
         timestamp = int(round(time.time() * 1000))
         context = self.context.format(offset, userId, last_time)
         url = self.url + context + '}' + self.timesiamp.format(timestamp)
-        # print(url)
         #获取ip
         ip = self.redis_cli2.srandmember("IP")
         proxies = {
@@ -147,7 +145,6 @@ class baiduSpider(object):
             print("用户ID-->", userId, 'ip无效，重新请求', e)
             res = self.get_res(source_url=source_url, userId=userId, last_time=last_time, offset=self.offset)
             return res
-
 
 # 解析文章列表
     def parse_itemlist(self, res, userName, source_url, userId):
