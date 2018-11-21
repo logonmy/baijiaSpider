@@ -29,7 +29,7 @@ class baiduSpider(object):
         try:
             mongoUri = 'mongodb://mongouser:password@ip:27017/admin'
             client = pymongo.MongoClient(mongoUri)
-            mDB = client.TouTiao
+            mDB = client.Baijia
             self.collection = mDB.baijiaIncrement
         except Exception as e:
             print("连接mongo数据库失败",e)
@@ -63,7 +63,7 @@ class baiduSpider(object):
             'Accept-Encoding': 'gzip, deflate',
             'Accept-Language': 'zh-CN,zh;q=0.9',
             'Cache-Control': 'max-age=0',
-            # 'Connection': 'keep-alive',
+            'Connection': 'keep-alive',
             'Cookie': 'BIDUPSID=9642A005C6C3D6F07C767CA906D5360D; PSTM=1525347482; BAIDUID=ED8B058FB7DA02227103D1CCF3A2F11B:FG=1; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; FP_UID=e695153e61b57e0d9203ab24d4bddde2; cflag=15%3A3; pgv_pvi=5318036480; H_PS_PSSID=26525_1461_21078_26808; PSINO=7',
             'Host': 'mbd.baidu.com',
             'Upgrade-Insecure-Requests': '1',
@@ -81,7 +81,7 @@ class baiduSpider(object):
 
     def run(self):  #
         while True:
-            user_data = self.redis_cli.rpop('baiJiaHaoUser_useful')
+            user_data = self.redis_cli.rpop('baiJiaUser')
             self.caculate_user += 1
             user_data = json.loads(re.sub('\'', '\"', user_data))
             print('正在获取第', self.caculate_user, '号主的文章',user_data['userId'])
@@ -103,13 +103,9 @@ class baiduSpider(object):
             userId = user_data['userId']
 
             source_url = 'https://baijiahao.baidu.com/u?app_id={}'.format(userId)
-            # print(source_url,"测试")
             res = self.get_res(source_url=source_url, userId=userId, last_time=last_time, offset=self.offset)
-            # print(res.json(), "<---源代码")
             time.sleep(0.2)
             self.parse_itemlist(res=res, userName=userName, source_url=source_url, userId=userId)
-
-
 
     def get_res(self, source_url, userId, last_time, offset):
 
