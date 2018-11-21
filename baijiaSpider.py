@@ -17,21 +17,17 @@ sys.setrecursionlimit(10000)
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-
-class Baidu(object):
+class baiduSpider(object):
     def __init__(self):
-        # self.db = connect(host="10.0.0.15", port=3306, db="zhan_db", user="root", password="zy79117911#",
-        #                   charset="utf8")
+        # self.db = connect(host="secret", port=3306, db="zhan_db", user="root", password="secret", charset="utf8")
         # self.cursor = self.db.cursor()
         try:
-            self.redis_cli = redis.Redis(host='172.16.16.40', port=6379, password='zy79117911#', db=5,
-                                         decode_responses=True)
-            self.redis_cli2 = redis.Redis(host="119.23.233.243", port=6480, db=1, password="zy79117911#",
-                                          decode_responses=True)
+            self.redis_cli = redis.Redis(host='secret', port=6379, password='secret', db=5, decode_responses=True)
+            self.redis_cli2 = redis.Redis(host="secret", port=6480, db=1, password="secret", decode_responses=True)
         except Exception as e:
             print("连接redis数据库失败",e)
         try:
-            mongoUri = 'mongodb://mongouser:zy79117911#@172.16.0.10:27017/admin'
+            mongoUri = 'mongodb://mongouser:password@ip:27017/admin'
             client = pymongo.MongoClient(mongoUri)
             mDB = client.TouTiao
             self.collection = mDB.baijiaIncrement
@@ -407,6 +403,6 @@ class Baidu(object):
             self.qps_too_quick(item)
 if __name__ == '__main__':
     for i in range(5):
-        baidu = Baidu()
+        baidu = baiduSpider()
         w = threading.Thread(target=baidu.run)
         w.start()
