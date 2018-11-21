@@ -357,7 +357,7 @@ class baiduSpider(object):
         }
         response = requests.get(url, headers=headers)
         content = response.text
-        # print(content)
+  
         if content:
             return json.loads(content)["access_token"]
 
@@ -398,6 +398,7 @@ class baiduSpider(object):
             time.sleep(3)
             print("----------解析文章类别过快，睡眠3秒----------")
             self.qps_too_quick(item)
+            
 if __name__ == '__main__':
     for i in range(5):
         baidu = baiduSpider()
