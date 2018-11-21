@@ -17,6 +17,10 @@ sys.setrecursionlimit(10000)
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+'''
+百家号文章内容抓取：启用多线程抓取
+'''
+
 class baiduSpider(object):
     def __init__(self):
         # self.db = connect(host="secret", port=3306, db="zhan_db", user="root", password="secret", charset="utf8")
