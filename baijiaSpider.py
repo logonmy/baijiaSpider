@@ -146,7 +146,7 @@ class baiduSpider(object):
             res = self.get_res(source_url=source_url, userId=userId, last_time=last_time, offset=self.offset)
             return res
 
-# 解析文章列表
+    # 解析文章列表
     def parse_itemlist(self, res, userName, source_url, userId):
         self.offset += 20
         try:
@@ -287,8 +287,6 @@ class baiduSpider(object):
         except Exception as e:
             print(e, "遇到错误，正在查看,评论链接：", comment_url)
 
-        # print("json---->",res)
-
         # data = json.loads(re.sub('\'', '\"', res))
         data = json.loads(res)
         comment = data['data']['homepage_comment']  # str
@@ -326,7 +324,6 @@ class baiduSpider(object):
             insert_items['save_time'] = item['save_time']
             insert_items['date_collection'] = item['date_collection']
             insert_items['optional_data'] = '[]'
-
 
             try:
                 self.collection.insert(insert_items)
