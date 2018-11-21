@@ -60,8 +60,8 @@ class baiduSpider(object):
             'Host': 'baijiahao.baidu.com',
             'Upgrade-Insecure-Requests': '1',
             'User-Agent': self.useragent.random,
-
         }
+        
         self.hesders3 = {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
             'Accept-Encoding': 'gzip, deflate',
@@ -72,8 +72,8 @@ class baiduSpider(object):
             'Host': 'mbd.baidu.com',
             'Upgrade-Insecure-Requests': '1',
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
-
         }
+        
         self.f = open('error.txt', 'a+', encoding='utf-8')
         # self.data = {"offset": 0, "user_id": "1566831857178535", "end_time": "1538943100", "source_url": "", "userName": ""}
         pass
