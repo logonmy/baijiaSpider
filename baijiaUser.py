@@ -153,7 +153,6 @@ class Baidu(object):
             items = data['items']
         except:
             items = []
-
         try:
             if items == []:
                 print("items为空")
@@ -171,7 +170,6 @@ class Baidu(object):
         except Exception as e:
             print("插入数据库异常，将回滚事务", e)
             self.db.rollback()
-
 
 if __name__ == '__main__':
     for i in range(4):
