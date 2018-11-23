@@ -109,7 +109,6 @@ class Baidu(object):
                 print(bankup_user_data['userName'], "-->户主数据取出来拿来出来的过程中出了问题", e)
 
     def get_res(self, source_url, userId, last_time, offset):
-
         headers = {
             # GET /list?type=article&context={%22offset%22:%22-1_6%22,%22app_id%22:%221554130297341500%22,%22last_time%22:%221531896119%22,%22pageSize%22:14}&_=1531896156107&callback=jsonp3 HTTP/1.1
             'Host': 'author.baidu.com',
