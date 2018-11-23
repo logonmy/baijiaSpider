@@ -179,5 +179,3 @@ if __name__ == '__main__':
         baidu = Baidu()
         w = threading.Thread(target=baidu.run)
         w.start()
-    # baidu = Baidu()
-    # baidu.run()
