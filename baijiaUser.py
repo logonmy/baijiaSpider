@@ -1,4 +1,5 @@
 # coding:utf-8
+
 import json
 import time
 import re
@@ -14,17 +15,16 @@ sys.setrecursionlimit(10000)
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-
 class Baidu(object):
     def __init__(self):
-        self.db = connect(host="gz-cdb-fc6eprur.sql.tencentcdb.com", port=61979, db="zhan_db", user="root", password="zy79117911#",
+        self.db = connect(host="secret", port=61979, db="01", user="root", password="secret",
                           charset="utf8")
         self.cursor = self.db.cursor()
 
         try:
-            self.redis_cli = redis.Redis(host='111.230.136.142', port=6480, password='zy79117911#', db=10,
+            self.redis_cli = redis.Redis(host='secret', port=6480, password='secret', db=10,
                                      decode_responses=True)
-            self.redis_cli2 = redis.Redis(host="172.16.16.40", port=6379, db=1, password="zy79117911#",
+            self.redis_cli2 = redis.Redis(host="secret", port=6379, db=1, password="secret",
                                           decode_responses=True)
         except Exception as e:
             print("连接redis数据库失败", e)
