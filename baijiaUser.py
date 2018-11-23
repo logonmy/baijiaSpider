@@ -71,7 +71,7 @@ class Baidu(object):
         self.f.close()
         pass
 
-    def run(self):  #
+    def run(self): 
         while True:
             try:
                 user_data = self.redis_cli.rpop('baiJiaHaoUser')
@@ -142,7 +142,7 @@ class Baidu(object):
         time.sleep(0.01)
         return res
 
-# 解析文章列表
+    # 解析文章列表
     def parse_itemlist(self, res, userName, source_url, userId):
         try:
             data = res.json()
