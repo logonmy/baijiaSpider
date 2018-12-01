@@ -19,12 +19,10 @@ class DB(object):
     
     #百家号存入Redis
     def save_to_redis(self):
-        # SELECT id,userId,mid FROM HZ1
-        sql = "SELECT userName,userId,source_url from baiduUser9"
+        sql = "SELECT userName,userId,source_url from baiduUser"
         self.cursor.execute(sql)
         data = self.cursor.fetchall()
-        print(type(data))
-        print('===== start =====')
+ 
         num = 0
         for d in data:
             print('从mysql把户主数据导入redis数据库中，正在导入第', num + 1, '个户主')
