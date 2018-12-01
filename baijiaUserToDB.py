@@ -46,7 +46,6 @@ class DB(object):
         except Exception as e:
             print("出错")
             return
-        # print("获取到值了", type(all_data))
 
         k = 0
         try:
@@ -70,4 +69,4 @@ class DB(object):
 if __name__ == '__main__':
     save_db = DB()
     save_db.save_to_redis()
-    save_db.save_to_mysql()
+    #save_db.save_to_mysql()
