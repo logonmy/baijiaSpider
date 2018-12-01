@@ -34,7 +34,7 @@ class DB(object):
             user_dict['source_url'] = d[2]
             user_dict['offset'] = 0
             user_dict['end_time'] = 1514736000
-            #
+     
             self.redis_cli.lpush('baijia_2018_history_data', user_dict)
             num += 1
         print('over', num)
