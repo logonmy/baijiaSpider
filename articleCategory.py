@@ -8,7 +8,7 @@ import time
 import redis
 
 '''
-百家号内容类别分类
+百家号文章内容类别分类
 '''
 
 class ArticleCategory(object):
@@ -114,7 +114,6 @@ class ArticleCategory(object):
             print("========更新一次文章分类完成=======")
             # self.collection.close()
 
-    #
     # def get_ip(self):
     #     ip = self.redis_cli2.srandmember("IP")
     #     proxies = {
