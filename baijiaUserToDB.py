@@ -5,8 +5,11 @@ import redis
 import json
 import re
 
-class DB(object):
+'''
+百家号存入MySQL或者Redis
+'''
 
+class DB(object):
     def __init__(self):
         self.redis_cli = redis.Redis(host="secret", port=6480, db=5, password="secret",
                                      decode_responses=True)
