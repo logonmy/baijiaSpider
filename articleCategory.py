@@ -1,4 +1,5 @@
 # coding:utf-8
+
 import pymongo
 import re
 import json
@@ -10,13 +11,13 @@ import redis
 class ArticleCategory(object):
     def __init__(self):
         try:
-            self.redis_cli2 = redis.Redis(host="172.16.16.40", port=6379, db=1, password="zy79117911#",
+            self.redis_cli2 = redis.Redis(host="secret", port=6379, db=1, password="secret",
                                       decode_responses=True)
         except:
             print("连接redis数据库失败")
             return
         try:
-            mongoUri = 'mongodb://mongouser:zy79117911#@172.16.0.10:27017/admin'
+            mongoUri = 'mongodb://mongouser:password@ip:port/admin'
             client = pymongo.MongoClient(mongoUri)
             mDB = client.TouTiao
             self.collection = mDB.baijiaIncrement
