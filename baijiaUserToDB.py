@@ -16,7 +16,8 @@ class DB(object):
         self.db = connect(host="secret", port=61979, db="zhan_db", user="root", password="secret",
                           charset="utf8")
         self.cursor = self.db.cursor()
-
+    
+    #百家号存入Redis
     def save_to_redis(self):
         # SELECT id,userId,mid FROM HZ1
         sql = "SELECT userName,userId,source_url from baiduUser9"
@@ -39,7 +40,8 @@ class DB(object):
             self.redis_cli.lpush('baijia_2018_history_data', user_dict)
             num += 1
         print('over', num)
-
+    
+    #百家号存入MySQL
     def save_to_mysql(self):
         try:
             all_data = self.redis_cli.lrange('baijia_newUsers', 0, -1)
