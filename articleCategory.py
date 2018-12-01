@@ -7,6 +7,9 @@ import requests
 import time
 import redis
 
+'''
+百家号内容类别分类
+'''
 
 class ArticleCategory(object):
     def __init__(self):
@@ -19,7 +22,7 @@ class ArticleCategory(object):
         try:
             mongoUri = 'mongodb://mongouser:password@ip:port/admin'
             client = pymongo.MongoClient(mongoUri)
-            mDB = client.TouTiao
+            mDB = client.baijia
             self.collection = mDB.baijiaIncrement
         except Exception as e:
             print("连接mongo数据库失败", e)
@@ -33,7 +36,6 @@ class ArticleCategory(object):
         }
         response = requests.get(url, headers=headers)
         content = response.text
-        # print(content)
         if content:
             return json.loads(content)["access_token"]
 
