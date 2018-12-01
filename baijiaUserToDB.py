@@ -8,9 +8,9 @@ import re
 class DB(object):
 
     def __init__(self):
-        self.redis_cli = redis.Redis(host="111.230.136.142", port=6480, db=5, password="zy79117911#",
+        self.redis_cli = redis.Redis(host="secret", port=6480, db=5, password="secret",
                                      decode_responses=True)
-        self.db = connect(host="gz-cdb-fc6eprur.sql.tencentcdb.com", port=61979, db="zhan_db", user="root", password="zy79117911#",
+        self.db = connect(host="secret", port=61979, db="zhan_db", user="root", password="secret",
                           charset="utf8")
         self.cursor = self.db.cursor()
 
