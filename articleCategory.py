@@ -69,16 +69,12 @@ class ArticleCategory(object):
                         data = data.encode("gbk", "ignore")
                     try:
                         response = requests.post(url, data=data, headers=headers, timeout=3)
-                        # print(response.content)
                     except:
-
                         # 如果出错，应该就是access_token过期了，重新获取access_token的值
                         print("access_token过期，重新获取access_token的值")
                         access_token = self.run()
                         token_url = 'https://aip.baidubce.com/rpc/2.0/nlp/v1/topic?access_token={}'.format(access_token)
                         response = requests.post(token_url, data=data, headers=headers)
-
-
                     try:
                         category = json.loads(response.content.decode("gbk"))['item']['lv1_tag_list']
                     except:
@@ -103,7 +99,6 @@ class ArticleCategory(object):
                             })
                         print("-------------", result['source_url'], "<---->", result['category'], "-------------")
                         continue
-
                     else:
                         self.collection.update(
                             {"source_url": result["source_url"]},
