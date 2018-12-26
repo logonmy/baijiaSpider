@@ -14,14 +14,10 @@ import redis
 class articleCategory(object):
     def __init__(self):
         self.redis_cli2 = redis.Redis(host="secret", port=6379, db=1, password="secret",decode_responses=True)
-        try:
-            mongoUri = 'mongodb://mongouser:password@ip:port/admin'
-            client = pymongo.MongoClient(mongoUri)
-            mDB = client.baijia
-            self.collection = mDB.baijiaIncrement
-        except Exception as e:
-            print("连接mongo数据库失败", e)
-            return
+        mongoUri = 'mongodb://mongouser:password@ip:port/admin'
+        client = pymongo.MongoClient(mongoUri)
+        mDB = client.baijia
+        self.collection = mDB.baijiaIncrement
 
     def run(self):
         # client_id 为官网获取的AK， client_secret 为官网获取的SK
