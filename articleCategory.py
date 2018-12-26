@@ -8,7 +8,7 @@ import time
 import redis
 
 '''
-百家号文章内容类别分类
+百家号文章内容分类整理
 '''
 
 class ArticleCategory(object):
