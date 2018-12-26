@@ -25,8 +25,7 @@ class articleCategory(object):
         headers = {
             'Content-Type': 'application/json; charset=UTF-8'
         }
-        response = requests.get(url, headers=headers)
-        content = response.text
+        content = requests.get(url, headers=headers).text
         if content:
             return json.loads(content)["access_token"]
 
