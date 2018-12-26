@@ -63,8 +63,8 @@ class articleCategory(object):
                     data = '{"title": \"%s\", "content": \"%s\"}' % (title, content)
                     try:
                         data = data.encode('gbk')
-                    except:
-                        print("解码出问题")
+                    except Exception as e:
+                        print(e)
                         data = data.encode("gbk", "ignore")
                     try:
                         response = requests.post(url, data=data, headers=headers, timeout=3)
@@ -96,7 +96,7 @@ class articleCategory(object):
                             {
                                 '$set': {"category": category}
                             })
-                        print("-------------", result['source_url'], "<---->", result['category'], "-------------")
+                  
                         continue
                     else:
                         self.collection.update(
