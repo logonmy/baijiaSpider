@@ -87,7 +87,6 @@ class articleCategory(object):
                             {
                                 '$set': {"category": category}
                             })
-                  
                         continue
                     else:
                         self.collection.update(
