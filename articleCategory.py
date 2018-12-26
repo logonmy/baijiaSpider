@@ -11,7 +11,7 @@ import redis
 百家号文章内容分类整理
 '''
 
-class ArticleCategory(object):
+class articleCategory(object):
     def __init__(self):
         try:
             self.redis_cli2 = redis.Redis(host="secret", port=6379, db=1, password="secret",
@@ -114,6 +114,6 @@ class ArticleCategory(object):
             print("========更新一次文章分类完成=======")
 
 if __name__=='__main__':
-    articleCategory = ArticleCategory()
+    articleCategory = articleCategory()
     access_token = articleCategory.run()
     articleCategory.get_split(access_token)
