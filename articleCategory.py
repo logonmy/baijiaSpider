@@ -14,8 +14,7 @@ import redis
 class articleCategory(object):
     def __init__(self):
         try:
-            self.redis_cli2 = redis.Redis(host="secret", port=6379, db=1, password="secret",
-                                      decode_responses=True)
+            self.redis_cli2 = redis.Redis(host="secret", port=6379, db=1, password="secret",decode_responses=True)
         except:
             print("连接redis数据库失败")
             return
