@@ -114,13 +114,6 @@ class ArticleCategory(object):
             print("========更新一次文章分类完成=======")
             # self.collection.close()
 
-    # def get_ip(self):
-    #     ip = self.redis_cli2.srandmember("IP")
-    #     proxies = {
-    #         "https": "https://{}".format(ip),
-    #     }
-    #     return proxies
-
 if __name__=='__main__':
     articleCategory = ArticleCategory()
     access_token = articleCategory.run()
