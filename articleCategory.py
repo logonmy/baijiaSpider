@@ -112,7 +112,6 @@ class ArticleCategory(object):
                     continue
 
             print("========更新一次文章分类完成=======")
-            # self.collection.close()
 
 if __name__=='__main__':
     articleCategory = ArticleCategory()
