@@ -76,8 +76,8 @@ class articleCategory(object):
                         response = requests.post(token_url, data=data, headers=headers)
                     try:
                         category = json.loads(response.content.decode("gbk"))['item']['lv1_tag_list']
-                    except:
-                        print("可能访问百度云API接口过快，将适当调整再启动...")
+                    except Exception as e:
+                        print("可能访问百度云API接口过快，将适当调整再启动...",e)
                         print("错误文章链接：", result['source_url'])
                         time.sleep(1)
                         response = requests.post(url, data=data, headers=headers, timeout=3)
