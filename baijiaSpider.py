@@ -131,7 +131,6 @@ class baiduSpider(object):
         proxies = {
             # "https":"https://{}".format(ip[0]),
             "https": "https://{}".format(ip),
-            # "http": "http://125.126.208.11:22829"
         }
         try:
             res = requests.get(url=url, headers=headers, verify=False, proxies=proxies, timeout=3)
