@@ -129,7 +129,6 @@ class baiduSpider(object):
         #获取ip
         ip = self.redis_cli2.srandmember("IP")
         proxies = {
-            # "https":"https://{}".format(ip[0]),
             "https": "https://{}".format(ip),
         }
         try:
