@@ -39,8 +39,6 @@ class baiduSpider(object):
             print("连接mongo数据库失败",e)
 
         self.useragent = UserAgent()
-        # self.page_table = page_table
-        # self.user_table = user_table
         #用来计算获取当前第几位号主的文章
         self.caculate_user = 0
         # 获取文章的url
