@@ -79,7 +79,7 @@ class baiduSpider(object):
         self.f.close()
         pass
 
-    def run(self):  #
+    def run(self): 
         while True:
             user_data = self.redis_cli.rpop('baiJiaUser')
             self.caculate_user += 1
