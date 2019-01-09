@@ -9,8 +9,8 @@ import pymysql
 
 class Taojinge(object):
     def __init__(self):
-        self.redis_cli = redis.Redis(host='192.168.0.21', port=6379, db=1, password='123456', charset='utf8', decode_responses=True)
-        self.db = pymysql.connect(host='192.168.0.21', port=3306, db='db_juejinlian', user='user_juejinlian', password='ac21acWq18E2', charset='utf8')
+        self.redis_cli = redis.Redis(host='secret', port=6379, db=1, password='secret', charset='utf8', decode_responses=True)
+        self.db = pymysql.connect(host='secret', port=3306, db='spider', user='root', password='secret', charset='utf8')
         self.cursor = self.db.cursor()
         self.page = 1
 
