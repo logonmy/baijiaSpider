@@ -76,15 +76,6 @@ class Taojinge(object):
             #创建时间
             create_time = int(time.time())
 
-            print(source_url)
-            print(title)
-            print(comment_count)
-            print(read_count)
-            print(publish_time)
-            print(platform)
-            print(tag)
-            print(channel_id)
-
             item = {
                 'title': title,
                 'url': source_url,
@@ -97,7 +88,7 @@ class Taojinge(object):
                 'channel_id': channel_id
             }
 
-            sql = """replace into jjb_tjg_article(title,url,publish_time,read_count,comment_count,platform,tag,create_time,channel_id)
+            sql = """replace into tjg_article(title,url,publish_time,read_count,comment_count,platform,tag,create_time,channel_id)
                     VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
             try:
                 self.cursor.execute(sql, (
