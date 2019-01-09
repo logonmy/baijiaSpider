@@ -34,7 +34,8 @@ class Taojinge(object):
             'Host': 'www.51taojinge.com',
             'Upgrade-Insecure-Requests': '1',
             'Referer': 'http://www.51taojinge.com/uc/index.php',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Mobile Safari/537.36'
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Mobile Safari/537.36',
+            'Cookie': ''
         }
         try:
             response = requests.get(url, headers=headers,timeout=5).text
