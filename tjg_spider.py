@@ -34,8 +34,7 @@ class Taojinge(object):
             'Host': 'www.51taojinge.com',
             'Upgrade-Insecure-Requests': '1',
             'Referer': 'http://www.51taojinge.com/uc/index.php',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Mobile Safari/537.36',
-            'Cookie': 'UM_distinctid=167d43a934b681-055290f7067ee4-3a3a5d0c-1fa400-167d43a934c288; Hm_lvt_72aa476a79cf5b994d99ee60fe6359aa=1545454198; token=50a058664c110e654e587f8ade387a7ce92ab466; uid=21030; phone=18927476407; viptime=1549453297; toutiaoURLname=www.51taojinge.com; Hm_lpvt_72aa476a79cf5b994d99ee60fe6359aa=1546863580; CNZZDATA1261342782=1429839834-1545452194-null%7C1546922168'
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Mobile Safari/537.36'
         }
         try:
             response = requests.get(url, headers=headers,timeout=5).text
