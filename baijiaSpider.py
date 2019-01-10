@@ -213,7 +213,6 @@ class baiduSpider(object):
                             # 获取新闻文章的 内容
                             content = self.parse_content(item['source_url'])
                             item['content'] = content
-                            # print('内容：', item['content'])
                         except Exception as e:
                             print('*' * 100, e)
                             self.f.write(item['author'] + '获取content错误' + '\n')
