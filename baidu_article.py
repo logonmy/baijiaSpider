@@ -115,12 +115,12 @@ class Baidu(object):
         if len(content) > 10:
             # 文章信息存储
             try:
-                url = 'http://dev.api.juejinchain.cn/index/spider/toutiao'
+                url = 'xxxx'
                 requests.post(url, data=items)
             except Exception as e:
                 print('insert wrong!!!!', e)
 
-        #self.get_thread_id(url)
+        self.get_thread_id(url)
 
     def get_thread_id(self,url):
         ua = UserAgent()
