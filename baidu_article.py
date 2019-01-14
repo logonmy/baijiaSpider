@@ -41,7 +41,7 @@ class Baidu(object):
         #当前请求Unix时间戳
         mt = int(time.time())
         # API签名字符串
-        para = 'b#28ac3c1abc' + 'juejinchain.com' + str(mt)
+        para = 'xxx + 'xxx' + str(mt)
         sign = hashlib.md5(para.encode(encoding='UTF-8')).hexdigest()
         #媒体ID(即用户ID)
         mid = 0
