@@ -80,9 +80,6 @@ class Baidu(object):
 
         content = str(content).strip()
 
-        print('avatar: ', avatar)
-        print('publish_time: ', publish_time)
-        print('read_count: ', read_count)
         print('comment_count: ', comment_count)
         print('platform: ', platform)
         print('channel_id: ', channel_id)
