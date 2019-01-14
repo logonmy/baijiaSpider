@@ -148,7 +148,6 @@ class Baidu(object):
     def run(self):
         while True:
             data = self.redis_cli.lpop('spider_baijia_article')
-            print(type(data), data)
             if data == None:
                 time.sleep(600)
                 continue
