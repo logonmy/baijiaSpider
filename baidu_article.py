@@ -143,7 +143,6 @@ class Baidu(object):
         soup = json.loads(soup)
 
         thread_id = soup['data']['pageInfo']['common']['thread_id']
-        print(thread_id)
 
     def run(self):
         while True:
