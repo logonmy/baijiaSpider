@@ -143,7 +143,6 @@ class Baidu(object):
                 self.get_baidu_article(data)
             except Exception as e:
                 print(e)
-                continue
 
 if __name__ == "__main__":
     for i in range(5):
