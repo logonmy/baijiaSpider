@@ -16,6 +16,8 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 #禁用安全请求警告
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
+'''百家号文章内容抓取'''
+
 class Baidu(object):
     def __init__(self):
         self.redis_cli = redis.Redis(host='xxx', port=6379, db=1, password='xxx', charset='utf8', decode_responses=True)
