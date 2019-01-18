@@ -146,6 +146,6 @@ class Baidu(object):
 
 if __name__ == "__main__":
     for i in range(5):
-        t = Baidu()
-        work_thread = Thread(target=t.run)
+        b = Baidu()
+        work_thread = Thread(target=b.run)
         work_thread.start()
