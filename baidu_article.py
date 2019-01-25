@@ -16,6 +16,10 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 #禁用安全请求警告
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
+'''
+多线程抓取文章内容及其评论内容
+'''
+
 class Baidu(object):
     def __init__(self):
         self.redis_cli = redis.Redis(host='xxx', port=6379, db=0, password='xxx', charset='utf8', decode_responses=True)
