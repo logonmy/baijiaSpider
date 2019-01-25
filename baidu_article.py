@@ -215,8 +215,6 @@ class Baidu(object):
             reply_comment = data['reply_list']
             reply_count = len(reply_comment)
 
-            print('user_name: ', user_name)
-            print('user_img_url: ', user_img_url)
             print('text: ', text)
             print('create_time: ', create_time)
             print('digg_count: ', digg_count)
