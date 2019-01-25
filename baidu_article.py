@@ -241,7 +241,6 @@ class Baidu(object):
                     reply_list.append(items)
 
             reply_list = json.dumps(reply_list)
-            print('reply_list: ', reply_list)
 
             items = {
                 'mt': mt,
