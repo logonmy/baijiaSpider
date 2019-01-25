@@ -5,6 +5,10 @@ import json
 import time
 import hashlib
 
+'''
+百家号评论内容抓取
+'''
+
 class Comment(object):
     def __init__(self):
         self.start = 0
