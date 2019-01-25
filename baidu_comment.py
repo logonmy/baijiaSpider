@@ -47,13 +47,6 @@ class Comment(object):
             reply_comment = data['reply_list']
             reply_count = len(reply_comment)
 
-            print('user_name: ', user_name)
-            print('user_img_url: ', user_img_url)
-            print('text: ', text)
-            print('create_time: ', create_time)
-            print('digg_count: ', digg_count)
-            print('reply_count: ', reply_count)
-
             #获取回复comment
             reply_list = []
             if reply_count > 0:
@@ -76,11 +69,10 @@ class Comment(object):
                         'fabulous': digg_count,
                         'comment_time': create_time,
                     }
-                    print('items：', items)
+                    
                     reply_list.append(items)
 
             reply_list = json.dumps(reply_list)
-            print('reply_list: ', reply_list)
 
             items = {
                 'mt': mt,
