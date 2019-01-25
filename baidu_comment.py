@@ -99,5 +99,5 @@ class Comment(object):
 if __name__ == "__main__":
     c = Comment()
     tid = 1118000014328218
-    url = 'www.com'
+    url = 'https://baijiahao.baidu.com/po/feed/share?context={"sourceFrom"%3A"bjh"%2C"nid"%3A"news_9951842500806386818"}'
     c.get_baidu_comment(tid,url)
