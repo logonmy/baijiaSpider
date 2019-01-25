@@ -99,9 +99,6 @@ class Baidu(object):
 
         content = str(content).strip()
 
-        print('content: ', content)
-        print('describe: ', describe)
-        print('img_url: ', img_url)
         print('title: ', title)
         print('url: ', url)
         print('author: ', author)
