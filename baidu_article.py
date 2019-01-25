@@ -215,10 +215,6 @@ class Baidu(object):
             reply_comment = data['reply_list']
             reply_count = len(reply_comment)
 
-            print('digg_count: ', digg_count)
-            print('reply_count: ', reply_count)
-            print('url: ', url)
-
             #获取回复comment
             reply_list = []
             if reply_count > 0:
