@@ -18,7 +18,7 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 class Baidu(object):
     def __init__(self):
-        self.redis_cli = redis.Redis(host='192.168.0.21', port=6379, db=1, password='123456', charset='utf8', decode_responses=True)
+        self.redis_cli = redis.Redis(host='xxx', port=6379, db=0, password='xxx', charset='utf8', decode_responses=True)
         self.start = 0
 
     def get_baidu_article(self,item):
@@ -42,7 +42,7 @@ class Baidu(object):
         #当前请求Unix时间戳
         mt = int(time.time())
         #API签名字符串
-        para = 'b#28ac3c1abc' + 'juejinchain.com' + str(mt)
+        para = 'xxx' + 'xxx.com' + str(mt)
         sign = hashlib.md5(para.encode(encoding='UTF-8')).hexdigest()
         #媒体ID(即用户ID)
         mid = 0
@@ -131,17 +131,16 @@ class Baidu(object):
         if len(content) > 10:
             #文章信息存储
             try:
-                article_test_url = 'http://dev.api.juejinchain.cn/index/spider/toutiao'
+                article_test_url = 'http://xxx'
                 res = requests.post(article_test_url, data=items)
                 print(res.text)
             except Exception as e:
                 print('insert wrong!!!!', e)
-        '''
+      
         try:
             self.get_thread_id(url)
         except Exception as e:
             print('get_thread_id is wrong!!!', e)
-        '''
 
     def get_thread_id(self,url):
         ua = UserAgent()
@@ -196,7 +195,7 @@ class Baidu(object):
             #当前请求Unix时间戳
             mt = int(time.time())
             #API签名字符串
-            para = 'b#28ac3c1abc' + 'juejinchain.com' + str(mt)
+            para = 'xxx' + 'xxx.com' + str(mt)
             sign = hashlib.md5(para.encode(encoding='UTF-8')).hexdigest()
             #评论用户名称
             user_name = data['uname']
@@ -263,7 +262,7 @@ class Baidu(object):
 
             #文章评论信息存储
             try:
-                comment_test_url = 'http://dev.api.juejinchain.cn/index/spider/toutiao_comment'
+                comment_test_url = 'http://xxx'
                 body = requests.post(comment_test_url, data=items)
                 print(body.text)
             except Exception as e:
