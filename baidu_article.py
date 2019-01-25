@@ -99,12 +99,6 @@ class Baidu(object):
 
         content = str(content).strip()
 
-        print('publish_time: ', publish_time)
-        print('read_count: ', read_count)
-        print('comment_count: ', comment_count)
-        print('platform: ', platform)
-        print('channel_id: ', channel_id)
-
         items = {
             'mt': mt,
             'sign': sign,
@@ -162,7 +156,6 @@ class Baidu(object):
         soup = json.loads(soup)
 
         thread_id = soup['data']['pageInfo']['common']['thread_id']
-        print('thread_id', thread_id)
 
         try:
             self.get_baidu_comment(thread_id, url)
