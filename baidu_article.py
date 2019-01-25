@@ -294,7 +294,7 @@ class Baidu(object):
                 time.sleep(5)
 
 if __name__ == "__main__":
-    for i in range(1):
+    for i in range(5):
         b = Baidu()
         work_thread = Thread(target=b.run)
         work_thread.start()
