@@ -123,7 +123,6 @@ class Taojinge(object):
             cid = re.findall(pattern, url)[0]
             items['content_id'] = cid
             self.redis_cli.rpush('spider_tjg_toutiao_article', str(items))
-        '''
         elif platform == 'uc':
             url = item['url']
             article_id = url.split('wm_aid=')[-1]
@@ -153,7 +152,6 @@ class Taojinge(object):
             url = item['url']
             items['url'] = url
             self.redis_cli.rpush('spider_tjg_kandian_article', str(items))
-        '''
 
     def time_task(self):
         now_stamp = int(time.time())
@@ -162,7 +160,6 @@ class Taojinge(object):
         try:
             self.cursor.execute(sql)
             self.db.commit()
-            #print('ok!')
         except Exception as e:
             print('DELETE sql is wrong! ', e)
             self.db.rollback()
