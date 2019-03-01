@@ -95,7 +95,6 @@ class Taojinge(object):
                 item['title'], item['url'], item['publish_time'], item['read_count'], item['comment_count'], item['platform'],
                 item['tag'],item['create_time'],item['channel_id']))
                 self.db.commit()
-                #print('ok!')
             except Exception as e:
                 print('insert sql is wrong! ', e)
                 self.db.rollback()
