@@ -17,7 +17,6 @@ class Comment(object):
         page = self.start
         source_url = 'https://ext.baidu.com/api/comment/v1/comment/getlist?appid=101&sid=t7&cuid=&isInf=1&start={}&num=20&use_uk=1&use_list=1&is_need_at=1&order=12&thread_id={}'.format(page,tid)
         headers = {
-            # 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'
             'Host': 'ext.baidu.com',
             'Connection': 'keep-alive',
             'Accept': '*/*',
