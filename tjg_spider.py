@@ -8,6 +8,10 @@ from lxml import etree
 from datetime import datetime
 import pymysql
 
+'''
+通过淘金阁抓取各个平台文章内容的相关信息
+'''
+
 class Taojinge(object):
     def __init__(self):
         self.redis_cli = redis.Redis(host='xxx', port=6379, db=0, password='xxx', charset='utf8', decode_responses=True)
