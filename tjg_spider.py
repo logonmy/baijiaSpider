@@ -3,14 +3,15 @@
 import requests
 import time
 import redis
+import re
 from lxml import etree
 from datetime import datetime
 import pymysql
 
 class Taojinge(object):
     def __init__(self):
-        self.redis_cli = redis.Redis(host='secret', port=6379, db=1, password='secret', charset='utf8', decode_responses=True)
-        self.db = pymysql.connect(host='secret', port=3306, db='spider', user='root', password='secret', charset='utf8')
+        self.redis_cli = redis.Redis(host='127.0.0.1', port=6379, db=0, password='123456', charset='utf8', decode_responses=True)
+        self.db = pymysql.connect(host='rm-wz9z11d4hcfndkdij.mysql.rds.aliyuncs.com', port=3306, db='db_juejinlian_v1', user='jjl_dongjun', password='ABCabc123', charset='utf8')
         self.cursor = self.db.cursor()
         self.page = 1
 
@@ -24,7 +25,6 @@ class Taojinge(object):
         page = str(self.page)
 
         url = 'http://www.51taojinge.com/{}/index.php?tag={}&count=&str_time={}&end_time={}&orderY={}&page={}'.format(platform,tag_en,str_time,end_time,orderY,page)
-        print(url)
 
         headers = {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
@@ -35,7 +35,7 @@ class Taojinge(object):
             'Upgrade-Insecure-Requests': '1',
             'Referer': 'http://www.51taojinge.com/uc/index.php',
             'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Mobile Safari/537.36',
-            'Cookie': ''
+            'Cookie': 'UM_distinctid=167d43a934b681-055290f7067ee4-3a3a5d0c-1fa400-167d43a934c288; Hm_lvt_72aa476a79cf5b994d99ee60fe6359aa=1549950240; Hm_lpvt_72aa476a79cf5b994d99ee60fe6359aa=1549950240; token=009784b18a2dda2c93726ea63a88b92c5eacd73c; uid=21030; phone=18927476407; viptime=1565511521; toutiaoURLname=www.51taojinge.com; CNZZDATA1261342782=1429839834-1545452194-null%7C1551254261'
         }
         try:
             response = requests.get(url, headers=headers,timeout=5).text
@@ -49,10 +49,9 @@ class Taojinge(object):
             print('something is wrong!!',e)
 
         self.page += 1
-        if self.page > 10:
+        if self.page > 100:
             return
         self.get_tjg_page(items,str_time,end_time)
-
 
     def parse_page(self, data_list, items):
         for data in data_list:
@@ -77,6 +76,8 @@ class Taojinge(object):
             #创建时间
             create_time = int(time.time())
 
+            #print(source_url)
+
             item = {
                 'title': title,
                 'url': source_url,
@@ -89,23 +90,91 @@ class Taojinge(object):
                 'channel_id': channel_id
             }
 
-            sql = """replace into tjg_article(title,url,publish_time,read_count,comment_count,platform,tag,create_time,channel_id)
+            sql = """replace into jjb_tjg_article(title,url,publish_time,read_count,comment_count,platform,tag,create_time,channel_id)
                     VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+
             try:
-                self.cursor.execute(sql, (
+                info = self.cursor.execute(sql, (
                 item['title'], item['url'], item['publish_time'], item['read_count'], item['comment_count'], item['platform'],
                 item['tag'],item['create_time'],item['channel_id']))
                 self.db.commit()
-                print('ok!')
+                #print('ok!')
             except Exception as e:
                 print('insert sql is wrong! ', e)
                 self.db.rollback()
+                info = 0
 
+            if info == 1:
+                self.redis_article(item)
+
+    def redis_article(self, item):
+        platform = item['platform']
+        items = {
+            'read_count': item['read_count'],
+            'comment_count': item['comment_count'],
+            'publish_time': item['publish_time'],
+            'channel_id': item['channel_id']
+        }
+
+        if platform == 'baidu':
+            url = item['url']
+            context = url.split('context=')[-1]
+            items['context'] = context
+            self.redis_cli.rpush('spider_tjg_baijia_article', str(items))
+        elif platform == 'toutiao':
+            url = item['url']
+            pattern = re.compile('\d+')
+            cid = re.findall(pattern, url)[0]
+            items['content_id'] = cid
+            self.redis_cli.rpush('spider_tjg_toutiao_article', str(items))
+        '''
+        elif platform == 'uc':
+            url = item['url']
+            article_id = url.split('wm_aid=')[-1]
+            items['article_id'] = article_id
+            self.redis_cli.rpush('spider_tjg_dayu_article', str(items))
+        elif platform == 'kuaibao':
+            url = item['url']
+            article_id = url.split('s')[-1][1:-1].strip()
+            items['article_id'] = article_id
+            self.redis_cli.rpush('spider_tjg_kuaibao_article', str(items))
+        elif platform == 'souhu':
+            url = item['url']
+            article_id = url.split('/')[-1].strip()
+            items['article_id'] = article_id
+            self.redis_cli.rpush('spider_tjg_sohu_article', str(items))
+        elif platform == 'wangyi':
+            url = item['url']
+            article_id = url.split('/')[-1].strip()[:-5]
+            items['article_id'] = article_id
+            self.redis_cli.rpush('spider_tjg_wangyi_article', str(items))
+        elif platform == 'fenghuang':
+            url = item['url']
+            article_id = url.split('=')[-1].strip()
+            items['article_id'] = article_id
+            self.redis_cli.rpush('spider_tjg_fenghuang_article', str(items))
+        else:
+            url = item['url']
+            items['url'] = url
+            self.redis_cli.rpush('spider_tjg_kandian_article', str(items))
+        '''
+
+    def time_task(self):
+        now_stamp = int(time.time())
+        end_stamp = now_stamp - 43200  # 12h(删除12h的内容)
+        sql = '''DELETE from jjb_tjg_article WHERE publish_time < %d''' % (end_stamp)
+        try:
+            self.cursor.execute(sql)
+            self.db.commit()
+            #print('ok!')
+        except Exception as e:
+            print('DELETE sql is wrong! ', e)
+            self.db.rollback()
 
     def run(self):
         while True:
             end_stamp = int(time.time()) - 1800
-            start_stamp = end_stamp - 43200  # 12h
+            start_stamp = end_stamp - 43200  #12h
             e_time = time.localtime(end_stamp)
             s_time = time.localtime(start_stamp)
             e_d = time.strftime("%Y-%m-%d", e_time)
@@ -122,6 +191,11 @@ class Taojinge(object):
             data = self.redis_cli.lpop('spider_tjg_tag')
             items = str(data)
             self.redis_cli.rpush('spider_tjg_tag', items)
+
+            try:
+                self.time_task()
+            except Exception as e:
+                print('delete data is wrong!!!',e)
             try:
                 items = eval(items)
                 self.get_tjg_page(items,str_time,end_time)
