@@ -17,15 +17,12 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 class Baidu(object):
     def __init__(self):
-        self.db = connect(host="secret", port=61979, db="01", user="root", password="secret",
-                          charset="utf8")
+        self.db = connect(host="secret", port=61979, db="secret", user="root", password="secret", charset="utf8")
         self.cursor = self.db.cursor()
 
         try:
-            self.redis_cli = redis.Redis(host='secret', port=6480, password='secret', db=10,
-                                     decode_responses=True)
-            self.redis_cli2 = redis.Redis(host="secret", port=6379, db=1, password="secret",
-                                          decode_responses=True)
+            self.redis_cli = redis.Redis(host='secret', port=6480, password='secret', db=0, decode_responses=True)
+            self.redis_cli2 = redis.Redis(host="secret", port=6379, db=1, password="secret", decode_responses=True)
         except Exception as e:
             print("连接redis数据库失败", e)
 
@@ -172,7 +169,7 @@ class Baidu(object):
             self.db.rollback()
 
 if __name__ == '__main__':
-    for i in range(4):
+    for i in range(5):
         baidu = Baidu()
         w = threading.Thread(target=baidu.run)
         w.start()
