@@ -23,7 +23,6 @@ class Taojinge(object):
         tag_en = items['tag_en']
         orderY = '4'
         page = str(self.page)
-
         url = 'http://www.51taojinge.com/{}/index.php?tag={}&count=&str_time={}&end_time={}&orderY={}&page={}'.format(platform,tag_en,str_time,end_time,orderY,page)
 
         headers = {
@@ -75,8 +74,6 @@ class Taojinge(object):
             channel_id = items['channel_id']
             #创建时间
             create_time = int(time.time())
-
-            #print(source_url)
 
             item = {
                 'title': title,
