@@ -11,10 +11,8 @@ import re
 
 class DB(object):
     def __init__(self):
-        self.redis_cli = redis.Redis(host="secret", port=6480, db=5, password="secret",
-                                     decode_responses=True)
-        self.db = connect(host="secret", port=61979, db="zhan_db", user="root", password="secret",
-                          charset="utf8")
+        self.redis_cli = redis.Redis(host="secret", port=6379, db=5, password="secret", decode_responses=True)
+        self.db = connect(host="secret", port=61979, db="secret", user="root", password="secret", charset="utf8")
         self.cursor = self.db.cursor()
     
     #百家号存入Redis
@@ -51,8 +49,7 @@ class DB(object):
         try:
             for i in all_data:
                 i = json.loads(re.sub('\'', '\"', i))
-                sql = "insert into baiduUser7 (userName,userId,source_url,last_time) values ('%s', '%s', '%s', '%s')" % (
-                i['userName'], i['userId'], i['source_url'], i['end_time'])
+                sql = "insert into baiduUser7 (userName,userId,source_url,last_time) values ('%s', '%s', '%s', '%s')" % (i['userName'], i['userId'], i['source_url'], i['end_time'])
                 self.cursor.execute(sql)
                 k = k + 1
                 if (k > 1000):
