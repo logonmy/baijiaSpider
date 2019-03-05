@@ -66,7 +66,6 @@ class Baidu(object):
     def __del__(self):
         self.db.close()
         self.f.close()
-        pass
 
     def run(self): 
         while True:
