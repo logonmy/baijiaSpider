@@ -61,7 +61,6 @@ class Baidu(object):
         
         self.f = open('error.txt', 'a+', encoding='utf-8')
         self.data = {"offset": 0, "user_id": "1566831857178535", "end_time": "1538943100", "source_url": "", "userName": ""}
-        pass
 
     def __del__(self):
         self.db.close()
@@ -155,7 +154,6 @@ class Baidu(object):
                 sql = "update baiduUser2 set last_time = '%s' where userId = '%s'" % ("", userId)
                 self.cursor.execute(sql)
                 self.db.commit()
-                print("插入成功")
             else:
                 print("items不为空")
                 best_news = int(items[0]['created_at'])
